@@ -2,7 +2,7 @@
  * @Author: fansolc
  * @Date: 2020-07-22 10:18:25
  * @LastEditors: fansolc
- * @LastEditTime: 2021-12-16 17:16:41
+ * @LastEditTime: 2021-12-21 17:12:16
  * @Description:
  */
 
@@ -23,7 +23,6 @@ interface API  {
 type UnknownObj = {
   [key: string]: any
 }
-
 
 interface HttpFunc  {
   [key: string]: (params?: UnknownObj, isFormData?: boolean, config?: UnknownObj) => Promise<any>
@@ -62,9 +61,10 @@ function checkRepeatModule(obj: API): API {
   return apiObj;
 }
 
-function httpConfig (api={}, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
+
+function httpConfig (api:API, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
   
-  const service: API = checkRepeatModule(api)
+  const service = checkRepeatModule(api)
 
   // 请求格式/参数的统一
   for (const key in service) {

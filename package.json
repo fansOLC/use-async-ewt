@@ -8,8 +8,8 @@
     "tsc": "tsc --init",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["axios", "异步封装", "react", "react-hooks"],
+  "author": "fansolc",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.0",
