@@ -84,7 +84,7 @@ export default {
 }
 ```
 
-### 2.3 组件中使用
+### 2.4 组件中使用
 ```
 import { http } from 'use-async-ewt'
 
@@ -104,7 +104,7 @@ const {data, loading, error, excute} = useAsync(()=>Promise<any>, boolean)
 
 ### 3.2 参数说明
 ```
-useAsync(返回promise的函数， 是否立即执行) // 默认不立即执行
+useAsync(返回promise的函数， 是否立即执行) // 默认false不立即执行
 data: 请求获取的数据
 loading: loading状态
 error: 请求错误的error

@@ -2,7 +2,7 @@
  * @Author: fansolc
  * @Date: 2020-07-22 10:18:25
  * @LastEditors: fansolc
- * @LastEditTime: 2021-12-21 17:12:16
+ * @LastEditTime: 2021-12-22 17:36:35
  * @Description:
  */
 
@@ -17,6 +17,12 @@ interface SingleApi {
 }
 
 interface API  {
+  [key: string]: {
+    [key: string]: SingleApi
+  }
+}
+
+interface SingleAPI {
   [key: string]: SingleApi
 }
 
@@ -48,19 +54,21 @@ const toRest = (url: string, params: UnknownObj) => {
   return url
 }
 
-function checkRepeatModule(obj: API): API {
-  const apiObj = {};
-  let key: string
-  for(key in obj) {
-    if(!apiObj[key]) {
-      apiObj[key] = obj[key]
-    } else {
-      throw new Error(`接口名称有重复，请修改【${key}】`)
+function checkRepeatModule(obj) {
+  const apiObj: SingleAPI = {};
+  let moduleName: string;
+  for (moduleName in obj) {
+    let key: string;
+    for (key in obj[moduleName]) {
+      if (!apiObj[key]) {
+        apiObj[key] = obj[moduleName][key];
+      } else {
+        throw new Error(`接口名称有重复，请修改【${key}】`)
+      }
     }
   }
   return apiObj;
 }
-
 
 function httpConfig (api:API, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
   
