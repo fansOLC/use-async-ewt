@@ -3,7 +3,7 @@
  * @Author: fansolc
  * @Date: 2020-07-22 10:18:25
  * @LastEditors: fansolc
- * @LastEditTime: 2021-12-16 17:16:41
+ * @LastEditTime: 2021-12-23 10:25:38
  * @Description:
  */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -42,18 +42,21 @@ const toRest = (url, params) => {
 };
 function checkRepeatModule(obj) {
     const apiObj = {};
-    let key;
-    for (key in obj) {
-        if (!apiObj[key]) {
-            apiObj[key] = obj[key];
-        }
-        else {
-            throw new Error(`接口名称有重复，请修改【${key}】`);
+    let moduleName;
+    for (moduleName in obj) {
+        let key;
+        for (key in obj[moduleName]) {
+            if (!apiObj[key]) {
+                apiObj[key] = obj[moduleName][key];
+            }
+            else {
+                throw new Error(`接口名称有重复，请修改【${key}】`);
+            }
         }
     }
     return apiObj;
 }
-function httpConfig(api = {}, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
+function httpConfig(api, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
     const service = checkRepeatModule(api);
     // 请求格式/参数的统一
     for (const key in service) {

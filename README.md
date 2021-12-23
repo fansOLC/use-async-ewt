@@ -22,10 +22,12 @@ httpConfig(apis, reqRequest, resConfig, resErrorConfig, currentEnvName, mockEnvN
 apis：
 {
   [key: string]: {
-    method: string,
-    url: string,
-    mockUrl?: string,
-    type?: string
+    [key: string]: {
+      method: string,
+      url: string,
+      mockUrl?: string,
+      type?: string
+    }
   }
 }
 reqRequest: 请求拦截器回调
@@ -68,7 +70,7 @@ apis.ts:
 ```
 import demo1 from 'demo1.ts'
 export default {
-  ...demo1,
+  demo1,
 }
 ```
 

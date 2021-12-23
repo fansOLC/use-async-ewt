@@ -2,7 +2,7 @@
  * @Author: fansolc
  * @Date: 2020-07-22 10:18:25
  * @LastEditors: fansolc
- * @LastEditTime: 2021-12-22 17:36:35
+ * @LastEditTime: 2021-12-23 10:25:38
  * @Description:
  */
 
@@ -70,7 +70,7 @@ function checkRepeatModule(obj) {
   return apiObj;
 }
 
-function httpConfig (api:API, reqConfig, resConfig, resErrorConfig, envName, mockEnvName) {
+function httpConfig (api:API, reqConfig, resConfig, resErrorConfig, envName: string, mockEnvName: string) {
   
   const service = checkRepeatModule(api)
 
